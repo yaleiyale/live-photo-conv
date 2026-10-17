@@ -17,7 +17,10 @@
        subprojects/ instead of pixiewood's wrap set. -->
   <dependencies>
     <glib>
+      <!-- Without this, glib's PTHREAD_INHERIT_SCHED makes bionic re-apply a
+           launch-boosted SCHED_FIFO onto each new thread, which EPERMs for apps. -->
       <patch>hack</patch>
+      <patch>pthread-restrictions</patch>
     </glib>
     <cairo/>
     <fontconfig/>
